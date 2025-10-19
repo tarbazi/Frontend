@@ -1,15 +1,19 @@
 <div>
     <div>
-        <input type = "text" id = "studentNum" placeholder = "Enter your student number"/>
+        <input type = "text" [(ngModel)] = "studentNum" placeholder = "Enter your student number" required/>
     </div>
     <div>
-    <input type="password" id="password" placeholder="Enter your password" />
+        <input type = "password" [(ngModel)] = "password" placeholder = "Enter your password" required/>
     </div>
-    <button routerLink = '/placeorder' > Sign in </button>
+    <div>
+        <button (click) = 'onSignIn()' > Sign In </button>
+    </div>
 </div>
+
 <div>
     <a routerLink = '/signup'> Sign up </a>
 </div>
+
 <div>
     <router-outlet></router-outlet>
 </div>

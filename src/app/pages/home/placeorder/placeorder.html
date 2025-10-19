@@ -1,1 +1,12 @@
-<p>placeorder works!</p>
+<div>
+    <div>
+        <textarea [(ngModel)] = "message" rows="10" cols="50" placeholder="Type your order here..."></textarea>
+    </div>
+    <div>
+        <button (click) = "onSubmit()">Submit</button>
+    </div>
+    <div>
+        <button routerLink = "/"> Log Out </button>
+    </div>
+</div>
+
