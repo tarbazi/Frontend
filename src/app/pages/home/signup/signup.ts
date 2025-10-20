@@ -20,12 +20,16 @@ export class Signup {
   async onSignUp(){
     if (this.password1 === this.password2){
       try{
-        const response = await fetch("http://localhost:8080/createuser?studentNum="+this.studentNum+"&password="+this.password1);
+        const response = await fetch("http://localhost:8080/createuser?studentnum="+this.studentNum+"&password="+this.password1, {method: "POST"});
         const data = await response.json();
 
         if (data.response === "Ack"){
           alert("Sign up successful");
           this.myRouter.navigate(['/']);
+        }
+
+        else if(data.response === "Nak_"){
+          alert("Sign up failed. User already exists.");
         }
 
         else{
@@ -36,6 +40,9 @@ export class Signup {
       catch(error){
         alert(`Sign up failed: ${error}`);
       }
+    }
+    else{
+      alert("Passwords do not match");
     }
   }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,20 +14,30 @@ export class Placeorder {
   message: string = "";
   studentNum: string = "";
 
+  ngOnInit(): void{
+    const state = history.state;
+
+    if (state && state.studentNum){
+      this.studentNum = state.studentNum;
+    }
+
+  }
+
   async onSubmit(){
     try{
-      const response = await fetch("http://localhost:8080/placeOrder?studentNum=" + this.studentNum + "&orderMessage=" + this.message, {method : "POST"});
-      //const data = await response.json();
+  
+      const response = await fetch("http://localhost:8080/placeOrder?studentnum=" + this.studentNum + "&ordermessage=" + this.message, {method : "POST"});
+      const data = await response.json();
 
-      alert(`${response}`);
+      alert(`${data.response}`);
     
-      /*if (data.response === "Ack"){
+      if (data.response === "Ack"){
         alert("Order placed successfully")
       }
 
       else{
         alert("Order failed");
-      }*/
+      }
 
     }
     catch (error){

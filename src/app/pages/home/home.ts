@@ -21,15 +21,15 @@ export class Home {
   async onSignIn(){
     try{
 
-      const response = await fetch("http://localhost:8080/authenticate?studentNum="+this.studentNum+"&password="+this.password);
+      const response = await fetch("http://localhost:8080/authenticate?studentnum="+this.studentNum+"&password="+this.password, {method: "POST"} );
       const data = await response.json();
       
       if (data.response == "Ack"){
-        this.myRouter.navigate(['/placeorder'], { state: { student: this.studentNum }});
+        this.myRouter.navigate(['/placeorder'], { state: { studentNum: this.studentNum }});
       }
 
       else{
-        alert(`Authentication Failed`);
+        alert(`Authentication Failed: Incorrect Username or Password`);
       }
     }
     catch(error){
